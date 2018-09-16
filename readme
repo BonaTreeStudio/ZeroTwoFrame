@@ -1,0 +1,5 @@
+
+Чтобы развернуть таблицы нужно:
+
+Настроить подключение в /protected/config/main.php
+Запустить скрипт /protected/setup.php
