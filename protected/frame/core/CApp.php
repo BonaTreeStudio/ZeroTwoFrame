@@ -1,16 +1,19 @@
 <?php
-require_once dirname(__FILE__).'/CLoader.php';
+namespace Core;
 
+require_once dirname(__FILE__).'/CLoader.php';
 /**
  * Description of CApp
  *
- * @author Alex
+ * @author Alexander Galaktionov <alkadar.galaktionov@gmail.com>
  *
- * @property CSession $session Сессия
+ * @property CSession $session Session
+ * @property СRequest $request Request
  */
-class CApp
-{
-    private static $_INSTANCE = NULL;
+class CApp {
+
+    use Core\Traits\SingleToneTrait;
+
     /**
      *
      * @var СSession
@@ -22,14 +25,6 @@ class CApp
      */
     public $request = NULL;
     private $config = [];
-
-    public static function getInstance($config = []): self
-    {
-        if (empty(self::$_INSTANCE)) {
-            self::$_INSTANCE = new self($config);
-        }
-        return self::$_INSTANCE;
-    }
 
     function __construct($config = [])
     {

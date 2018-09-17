@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/define.php';
+require_once dirname(__FILE__) . '/define.php';
 return [
     LOADER_PATH_CONFIG => [
         'components',
@@ -10,12 +10,12 @@ return [
     DATABASE_CONFIG => [
         DEFAULT_DATABASE_CONFIG => [
             'host' => 'localhost',
-            'user' => 'todo-desk',
-            'password' => 'Mh9aqBTQXeIO70Cy',
-            'database' => 'todo-desk'
+            'user' => 'user',
+            'password' => '*****',
+            'database' => 'database'
         ],
     ],
     CORE_CONFIG => [
-        'url_nesting' => 4,
+        'url_nesting' => 2,
     ]
 ];

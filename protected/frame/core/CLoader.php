@@ -1,13 +1,11 @@
 <?php
-
 /**
- * Description of CLoader
+ * CLoader is class loader
  *
- * @author Alex
+ * @author Alexander Galaktionov <alkadar.galaktionov@gmail.com>
  */
 class CLoader
 {
-
     public static function autoload($file, $ext = FALSE, $dir = FALSE)
     {
         $path = CApp::getInstance()->getConfig(LOADER_PATH_CONFIG);

@@ -13,4 +13,4 @@ define('DEFAULT_DATABASE_ENGINE', 'INNODB');
 define('CORE_CONFIG', 'core');
 
 // Dirs
-define('PROTECTED_DIR', dirname(__DIR__).'/');
+define('PROTECTED_DIR', dirname(__DIR__) . 'define.php/');

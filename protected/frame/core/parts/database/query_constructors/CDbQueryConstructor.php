@@ -1,13 +1,9 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *
- *
- */
-
 /**
+ * Providing query cunstruction.
+ *
+ * @author Alexander Galaktionov <alkadar.galaktionov@gmail.com>
+ *
  * @property string $CREATE_TABLE Запрос создания таблицы
  * @property string $DROP_TABLE Запрос удаления таблицы
  * @property string $TRUNCATE_TABLE Запрос очистки таблицы
@@ -16,7 +12,7 @@
  * @property string $DELETE Запрос удаления значений в таблице
  * @property string $SELECT Запрос получения данных
  */
-class CDbQueryConstructor extends CAppComponent
+class CDbSimpleQueryConstructor extends CAppComponent
 {
     protected $database;
     protected $engine;
