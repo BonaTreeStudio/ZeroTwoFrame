@@ -10,7 +10,7 @@
  *
  * @author Alex
  */
-class AuthController extends CFreeAjaxJsonController
+class AuthController extends \Core\Exts\CFreeAjaxJsonController
 {
 
     public function actionLogin()

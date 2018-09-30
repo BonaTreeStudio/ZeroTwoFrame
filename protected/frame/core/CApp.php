@@ -1,7 +1,6 @@
 <?php
 namespace Core;
 
-require_once dirname(__FILE__).'/CLoader.php';
 /**
  * Description of CApp
  *
@@ -10,9 +9,11 @@ require_once dirname(__FILE__).'/CLoader.php';
  * @property CSession $session Session
  * @property СRequest $request Request
  */
+namespace Core;
+
 class CApp {
 
-    use Core\Traits\SingleToneTrait;
+    use \Core\Traits\SingleToneTrait;
 
     /**
      *
@@ -26,15 +27,15 @@ class CApp {
     public $request = NULL;
     private $config = [];
 
-    function __construct($config = [])
+    public function __construct($config = [])
     {
         $this->config = $config;
     }
 
     private function setupCoreFunctions()
     {
-        $this->session = new СSession($this->getConfig(CORE_CONFIG, 'session'));
-        $this->request = new СRequest();
+        $this->session = new \Core\Parts\Server\СSession($this->getConfig(CORE_CONFIG, 'session'));
+        $this->request = new \Core\Parts\Server\СRequest();
     }
 
     public function getConfig()
@@ -57,7 +58,7 @@ class CApp {
     function run()
     {
         $this->setupCoreFunctions();
-        CController::factory(CUrl::getInstance()->getControllerParams())->run();
+        \Core\Base\CController::factory(\Core\Base\CUrl::getInstance()->getControllerParams())->run();
     }
 
     public static function factory($config = [])

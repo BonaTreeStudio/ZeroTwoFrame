@@ -10,16 +10,14 @@
  *
  * @author Alex
  */
-class TestController extends CController
+class TestController extends \Core\Base\CController
 {
-
     public function actionIndex()
     {
-        $criteria = new CDbSelectionCriteria();
+        echo "123123";
+        $criteria = new \Core\Parts\Database\CDbSelectionCriteria();
         $criteria->compare('id', '2');
-        $todo = Todos::model()->find($criteria);
-//        /var_dump($todo);
-        $todo->done = '1';
-        $todo->save();
+        $criteria->compare('name', '10');
+        var_dump($criteria->getCriteria());
     }
 }

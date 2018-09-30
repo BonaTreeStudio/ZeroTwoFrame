@@ -10,9 +10,8 @@
  *
  * @author Alex
  */
-class SignupController extends CFreeAjaxJsonController
+class SignupController extends \Core\Exts\CFreeAjaxJsonController
 {
-
     public function actionSignup()
     {
         $userData = CApp::getInstance()->request->getParam('userData', []);

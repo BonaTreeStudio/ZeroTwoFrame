@@ -10,8 +10,12 @@
  *
  * @author Alex
  */
-class СSession extends CAppRequesterComponent
+namespace Core\Parts\Server;
+
+class СSession
 {
+    use \Core\Traits\SingleToneTrait;
+    use \Core\Traits\FieldRequestTrait;
 
     public function __construct($options)
     {

@@ -4,6 +4,8 @@
  *
  * @author Alexander Galaktionov <alkadar.galaktionov@gmail.com>
  */
+namespace Core\Parts\Database;
+
 class CDbSelectionCriteria {
     const MERGE_OPERATOR_AND = 'AND';
     const MERGE_OPERATOR_OR = 'OR';
@@ -17,9 +19,10 @@ class CDbSelectionCriteria {
 
     public function compare($field, $value, $compareOperator = '=', $mergeOperator = self::MERGE_OPERATOR_AND)
     {
+        $cdb = CDb;
         if (is_array($value)) {
             foreach ($value as &$v) {
-                $v = CDb::clearString($v);
+                $v =  $cdb::clearString($v);
             }
             $this->criteriaParts[] = [
                 "`$field` IN ('".implode("', '", $value)."')",
@@ -27,7 +30,7 @@ class CDbSelectionCriteria {
             ];
         } else {
             $this->criteriaParts[] = [
-                "`$field` $compareOperator '".CDb::clearString($value)."'",
+                "`$field` $compareOperator '" . $cdb::clearString($value)."'",
                 $mergeOperator
             ];
         }
@@ -35,8 +38,9 @@ class CDbSelectionCriteria {
 
     public function like($field, $template, $notLike = false, $mergeOperator = self::MERGE_OPERATOR_AND)
     {
+        $cdb = CDb;
         $this->criteriaParts[] = [
-            "`$field` ".($notLike ? "NOT " : "")."LIKE '".CDb::clearString($template)."'",
+            "`$field` ".($notLike ? "NOT " : "")."LIKE '" . $cdb::clearString($template)."'",
             $mergeOperator
         ];
     }

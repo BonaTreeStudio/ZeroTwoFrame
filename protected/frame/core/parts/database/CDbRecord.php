@@ -4,6 +4,8 @@
  *
  * @author Alexander Galaktionov <alkadar.galaktionov@gmail.com>
  */
+namespace Core\Parts\Database;
+
 class CDbRecord {
     const RULE_AI = 'AUTO_INCREMENT';
     const RULE_REQUIERED = true;
@@ -38,8 +40,10 @@ class CDbRecord {
     //put your code here
     public function __construct($attribures = [])
     {
-        $this->db = CDb::factory($this->dbConnection());
-        $this->constructor = CDbQueryConstructor::factory([
+        $cdb = CDb;
+        $cdbQQ = CDbQueryConstructor;
+        $this->db = $cdb::factory($this->dbConnection());
+        $this->constructor = $cdbQQ::factory([
                 'database' => $this->database(),
                 'engine' => $this->engine(),
                 'table' => $this->table(),
@@ -291,12 +295,14 @@ class CDbRecord {
                 }
             }
         }
-        foreach ($massiveSend as $modelClass => $scenario) {
+        foreach ($massiveSend as $modelClass => $scenarioActions) {
             $model = $modelClass::model();
-            foreach ($actions as $method => $recordsTo) {
-                if ($model->setRecords($recordsTo)->save($scenario)) {
-                    foreach ($recordsTo as $record) {
-                        $record->afterSave();
+            foreach ($scenarioActions as $scenario => $actions) {
+                foreach ($actions as $method => $recordsTo) {
+                    if ($model->setRecords($recordsTo)->save($scenario)) {
+                        foreach ($recordsTo as $record) {
+                            $record->afterSave();
+                        }
                     }
                 }
             }

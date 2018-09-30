@@ -12,6 +12,8 @@
  * @property string $DELETE Запрос удаления значений в таблице
  * @property string $SELECT Запрос получения данных
  */
+namespace Core\Parts\Database\Query_Constructors;
+
 class CDbSimpleQueryConstructor extends CAppComponent
 {
     protected $database;

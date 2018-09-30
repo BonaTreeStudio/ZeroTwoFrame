@@ -10,9 +10,11 @@
  *
  * @author Alex
  */
+namespace Core\Components;
+
 class CJsonAns extends CAppComponent
 {
-    private static $_INSTANCE = NULL;
+    use \Core\Traits\SingleToneTrait;
 
     const STATUS_OK = 'ok';
     const STATUS_ERROR = 'error';
@@ -21,14 +23,6 @@ class CJsonAns extends CAppComponent
     const ANS_DATA = 'data';
 
     protected $ans = [];
-
-    public static function getInstance(): self
-    {
-        if (empty(self::$_INSTANCE)) {
-            self::$_INSTANCE = new self();
-        }
-        return self::$_INSTANCE;
-    }
 
     public function __construct()
     {

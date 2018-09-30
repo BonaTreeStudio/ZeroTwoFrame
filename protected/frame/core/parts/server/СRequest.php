@@ -10,8 +10,12 @@
  *
  * @author Alex
  */
-class СRequest extends CAppRequesterComponent
+namespace Core\Parts\Server;
+
+class СRequest
 {
+    use \Core\Traits\SingleToneTrait;
+    use \Core\Traits\FieldRequestTrait;
 
     public function getParam($name, $default = NULL)
     {

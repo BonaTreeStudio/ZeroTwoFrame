@@ -10,8 +10,12 @@
  *
  * @author Alex
  */
-class CController extends CAppComponent
+namespace Core\Base;
+
+class CController
 {
+    use \Core\Traits\BindTrait;
+
     protected $action = NULL;
     protected $args = [];
     protected $output = '';
@@ -75,7 +79,7 @@ class CController extends CAppComponent
         return ucfirst($controller).'Controller';
     }
 
-    public static function factory($params): self
+    public static function factory($params)
     {
         $controllerName = self::getClassName($params['controller']);
         if (class_exists($controllerName)) {

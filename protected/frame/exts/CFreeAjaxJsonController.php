@@ -10,9 +10,10 @@
  *
  * @author Alex
  */
-class CFreeAjaxJsonController extends CAjaxJsonController
-{
+namespace Core\Exts;
 
+class CFreeAjaxJsonController extends \Core\Exts\CAjaxJsonController
+{
     protected function apiFilter()
     {
         if (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {

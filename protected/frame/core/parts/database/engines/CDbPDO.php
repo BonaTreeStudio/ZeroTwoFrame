@@ -1,11 +1,14 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * PDO mysql engine
+ * modern type
+ * more protected
+ *
+ * @author Alexander Galaktionov <alkadar.galaktionov@gmail.com>
  */
+namespace Core\Parts\Database\Engines;
 
-class CDb extends CAppComponent
+class CDbPDO
 {
     protected static $_INSTANCE = [];
     private $configId = NULL;
@@ -26,7 +29,7 @@ class CDb extends CAppComponent
         return self::$_INSTANCE[$connection];
     }
 
-    function __construct($connection)
+    public function __construct($connection)
     {
         $this->configId = $connection;
         $this->bind(CApp::getInstance()->getConfig(DATABASE_CONFIG, $connection));

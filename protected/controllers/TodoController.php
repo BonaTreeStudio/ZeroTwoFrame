@@ -10,9 +10,8 @@
  *
  * @author Alex
  */
-class TodoController extends CAjaxJsonController
+class TodoController extends \Core\Exts\CAjaxJsonController
 {
-
     public function actionGetList()
     {
         $shared = CApp::getInstance()->request->getParam('shared', 0);

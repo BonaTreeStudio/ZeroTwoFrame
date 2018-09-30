@@ -7,12 +7,18 @@
 namespace Core\Traits;
 
 trait SingleToneTrait {
-    protected static $_INSTANCE = NULL;
+    private static $instance;
 
-    public static function getInstance() {
-        if (empty(self::$_INSTANCE)) {
-            self::$_INSTANCE = new self();
+    public static function getInstance()
+    {
+        if (!isset(self::$instance)) {
+            $reflection     = new \ReflectionClass(__CLASS__);
+            self::$instance = $reflection->newInstanceArgs(func_get_args());
         }
-        return self::$_INSTANCE;
+
+        return self::$instance;
     }
+
+    final private function __clone(){}
+    final private function __wakeup(){}
 }
