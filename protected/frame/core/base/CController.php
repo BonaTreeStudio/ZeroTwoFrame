@@ -19,6 +19,7 @@ class CController
     protected $action = NULL;
     protected $args = [];
     protected $output = '';
+    protected $module = NULL;
 
     public function __construct($setup)
     {

@@ -10,9 +10,9 @@
  *
  * @author Alex
  */
-namespace Core\Exts;
+namespace Exts;
 
-class CFreeAjaxJsonController extends \Core\Exts\CAjaxJsonController
+class CFreeAjaxJsonController extends \Exts\CAjaxJsonController
 {
     protected function apiFilter()
     {

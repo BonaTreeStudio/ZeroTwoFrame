@@ -10,7 +10,7 @@
  *
  * @author Alex
  */
-namespace Core\Exts;
+namespace Exts;
 
 class CAjaxJsonController extends \Core\Base\CController
 {

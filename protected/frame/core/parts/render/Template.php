@@ -19,19 +19,30 @@ class Template
     protected $layout = NULL;
     protected $fileSystem = '';
 
+    protected $bgOutput = '';
+
     protected function __construct($fields)
     {
         $this->bind($fields);
     }
 
-    public function render($template, $params = [], $returnOutput = false, $processAssets = true) {
+    public function setBgOutput($output) {
+        $this->bgOutput = $output;
+    }
 
+    public function render($template, $params = [], $returnOutput = false, $processAssets = true) {
+        echo $this->bgOutput;
     }
 
     public function renderPartial($template, $params = [], $returnOutput = false, $processAssets = true) {
 
     }
 
+    /**
+     * @param $sourceDir
+     * @param null $layout
+     * @return Template
+     */
     public static function factory($sourceDir, $layout = NULL) : self {
         return new self([
             'sourceDir' => $sourceDir,

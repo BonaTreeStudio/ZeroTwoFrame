@@ -1,6 +1,4 @@
 <?php
-namespace Core;
-
 /**
  * Description of CApp
  *
@@ -25,7 +23,7 @@ class CApp {
      * @var СRequest
      */
     public $request = NULL;
-    private $config = [];
+    protected $config = [];
 
     public function __construct($config = [])
     {
@@ -58,7 +56,22 @@ class CApp {
     function run()
     {
         $this->setupCoreFunctions();
-        \Core\Base\CController::factory(\Core\Base\CUrl::getInstance()->getControllerParams())->run();
+        $urlParams = \Core\Base\CUrl::getInstance()->getControllerParams();
+        if ($urlParams['module'] !== 'core') {
+            $controller = \Core\CAppModule::factory($urlParams['module'] ,$this->config[MODULES][$urlParams['module']], $this->config)->run();
+        } else {
+            $urlParams['module'] = $this;
+            $controller = \Core\Base\CController::factory($urlParams);
+        }
+        if (empty($controller)) {
+            throw new \Exception('Controller ' . $urlParams['controller'] . ' not found', 404);
+        }
+        $controller->run();
+    }
+
+    function getModuleViewPath() {
+        $urlParams = \Core\Base\CUrl::getInstance()->getControllerParams();
+        return APP_ROOT . 'views/';
     }
 
     public static function factory($config = [])
