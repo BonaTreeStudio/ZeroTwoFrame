@@ -6,16 +6,18 @@
  */
 namespace Core\Traits;
 
-trait SingleToneTrait {
-    private static $instance;
+trait SingleToneKeyTrait {
+    private static $instances = [];
 
     public static function getInstance()
     {
-        if (!isset(self::$instance)) {
+        $args = func_get_args();
+        $key = md5(serialize($args));
+        if (!isset(self::$instances[$key])) {
             $reflection     = new \ReflectionClass(__CLASS__);
-            self::$instance = $reflection->newInstanceArgs(func_get_args());
+            self::$instances[$key] = $reflection->newInstanceArgs($args);
         }
-        return self::$instance;
+        return self::$instances[$key];
     }
 
     final private function __clone(){}
